@@ -1,6 +1,7 @@
+
 function page() {
   return (
-    <div>home page</div>
+    <div>dashboard page</div>
   )
 }
 
