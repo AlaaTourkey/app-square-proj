@@ -1,4 +1,4 @@
-'use client';
+// 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -8,11 +8,11 @@ import { useAuth } from '../context/AuthContext';
 import { useTranslation } from 'next-i18next';
 
 function Navbar() {
-  const { t } = useTranslation('translation');
+  const { t, i18n } = useTranslation('translation');
   const [isMounted, setIsMounted] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const { token, logout } = useAuth(); // Get token and logout from the auth context
-  const pathName = isMounted ? usePathname() : '';
+  const pathName = usePathname(); // Always call this hook
 
   useEffect(() => {
     setIsMounted(true);
@@ -27,8 +27,13 @@ function Navbar() {
     setIsOpen(!isOpen);
   };
 
+  // Function to change language
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
+
   return (
-    <nav className="bg-white shadow-md fixed top-0 left-0 right-0 p-2 z-50">
+    <nav className="bg-white shadow-md fixed w-full z-10">
       <div className="container mx-auto flex justify-between items-center p-4">
         <Image className="w-24" src={image} alt="Logo" />
         <button
@@ -64,7 +69,6 @@ function Navbar() {
               </li>
             ))}
             {token ? (
-              // Show these links only if the user is logged in (token exists)
               <>
                 <li className="nav-item">
                   <Link
@@ -92,7 +96,6 @@ function Navbar() {
                 </li>
               </>
             ) : (
-              // Show the login link if the user is not logged in
               <li className="nav-item">
                 <Link
                   className="block px-4 py-2 rounded-lg text-gray-600 hover:bg-blue-100 transition-colors duration-200"
@@ -108,6 +111,15 @@ function Navbar() {
               </li>
             )}
           </ul>
+        </div>
+        {/* Language Switcher Buttons */}
+        <div className="ml-4">
+          <button onClick={() => changeLanguage('en')} className="mr-2 px-4 py-2 text-gray-600 hover:bg-blue-100 rounded">
+            English
+          </button>
+          <button onClick={() => changeLanguage('ar')} className="px-4 py-2 text-gray-600 hover:bg-blue-100 rounded">
+            العربية
+          </button>
         </div>
       </div>
     </nav>

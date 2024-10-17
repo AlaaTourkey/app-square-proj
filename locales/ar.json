@@ -1,7 +1,9 @@
 {
+  "page.home.title" : "مشروع ",
   "welcome": "أهلاً وسهلاً",
   "logout": "تسجيل الخروج",
   "login": "تسجيل الدخول",
+  "home" : " الرئيسيه",
   "products": "المنتجات",
   "dashboard": "لوحة التحكم",
   "page.RootLayout.title":"أهلاً أهلاً"
