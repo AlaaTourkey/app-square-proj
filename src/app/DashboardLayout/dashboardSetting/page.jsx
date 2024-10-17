@@ -1,7 +1,7 @@
 function page() {
   return (
     <>
-      <div className="bg-slate-300 h-full">dashboardSetting</div>
+      <div className="flex justify-center items-center bg-slate-300 h-full">dashboardSetting</div>
     </>
   )
 }

@@ -1,4 +1,5 @@
 'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -8,7 +9,7 @@ import { useAuth } from '../context/AuthContext';
 import { useTranslation } from 'next-i18next';
 
 function Navbar() {
-  const { t } = useTranslation('translation'); // Use the 'translation' namespace
+  const { t, i18n } = useTranslation('translation');
   const [isMounted, setIsMounted] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const { token, logout } = useAuth();
@@ -19,16 +20,20 @@ function Navbar() {
   }, []);
 
   const links = [
-    { path: '/', link: t('home') }, // Use translation for 'Home'
-    { path: '/products', link: t('products') }, // Use translation for 'Products'
+    { path: '/', link: t('home') },
+    { path: '/products', link: t('products') },
   ];
 
   const toggleNavbar = () => {
     setIsOpen(!isOpen);
   };
 
+  const changeLanguage = (lang) => {
+    i18n.changeLanguage(lang);
+  };
+
   return (
-    <nav className="bg-white shadow-md">
+    <nav className="bg-white shadow-md fixed top-0 left-0 right-0 z-50 py-2">
       <div className="container mx-auto flex justify-between items-center p-4">
         <Image className="w-24" src={image} alt="Logo" />
         <button
@@ -55,9 +60,8 @@ function Navbar() {
                     }`}
                   href={link.path}
                   onClick={() => {
-                    setIsOpen(false); // Close the menu on link click
-                    document.body.scrollTop = 0; // Scroll to the top for smooth UX
-                    document.documentElement.scrollTop = 0; // For Safari
+                    setIsOpen(false);
+                    document.body.scrollTop = 0;
                   }}
                 >
                   {link.link}
@@ -69,14 +73,14 @@ function Navbar() {
                 <li className="nav-item">
                   <Link
                     className={`block px-4 py-2 rounded-lg transition-colors duration-200 ${pathName === '/DashboardLayout' ? 'bg-blue-500 text-white' : 'text-gray-600 hover:bg-blue-100'
-                      }`} href="/DashboardLayout"
+                      }`}
+                    href="/DashboardLayout"
                     onClick={() => {
                       setIsOpen(false);
-                      document.body.scrollTop = 0; // Scroll to the top for smooth UX
-                      document.documentElement.scrollTop = 0; // For Safari
+                      document.body.scrollTop = 0;
                     }}
                   >
-                    {t('dashboard')} {/* Use translation for 'Dashboard' */}
+                    {t('dashboard')}
                   </Link>
                 </li>
                 <li className="nav-item">
@@ -87,23 +91,34 @@ function Navbar() {
                     }}
                     className="block px-4 py-2 rounded-lg text-gray-600 hover:bg-blue-100 transition-colors duration-200"
                   >
-                    {t('logout')} {/* Use translation for 'Logout' */}
+                    {t('logout')}
                   </button>
                 </li>
               </>
             ) : (
-              <Link
-                className="block px-4 py-2 rounded-lg text-gray-600 hover:bg-blue-100 transition-colors duration-200"
-                href="/login"
-                onClick={() => {
-                  setIsOpen(false);
-                  document.body.scrollTop = 0; // Scroll to the top for smooth UX
-                  document.documentElement.scrollTop = 0; // For Safari
-                }}
-              >
-                {t('login')} {/* Use translation for 'Login' */}
-              </Link>
+              <li className="nav-item">
+                <Link
+                  className="block px-4 py-2 rounded-lg text-gray-600 hover:bg-blue-100 transition-colors duration-200"
+                  href="/login"
+                  onClick={() => {
+                    setIsOpen(false);
+                    document.body.scrollTop = 0;
+                  }}
+                >
+                  {t('login')}
+                </Link>
+              </li>
             )}
+            <li className="nav-item">
+              <div className="language-switcher">
+                <button onClick={() => changeLanguage('en')} className="p-2">
+                  English
+                </button>
+                <button onClick={() => changeLanguage('ar')} className="p-2">
+                  العربية
+                </button>
+              </div>
+            </li>
           </ul>
         </div>
       </div>

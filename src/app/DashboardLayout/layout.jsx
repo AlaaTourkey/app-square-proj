@@ -2,9 +2,9 @@ import Link from "next/link";
 
 export default function DashboardLayout({ children }) {
   return (
-    <div className="flex">
+    <div className="flex mt-20">
       {/* Sidebar */}
-      <div className="w-64 bg-gray-800 text-white h-full p-5 fixed">
+      <div className="w-64 bg-gray-800 text-white h-full p-5 fixed ">
         <h2 className="text-lg font-bold mb-4">Dashboard</h2>
         <ul className="space-y-2">
           <li>

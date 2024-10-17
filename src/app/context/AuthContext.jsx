@@ -18,14 +18,14 @@ export const AuthProvider = ({ children }) => {
 
   const login = (newToken) => {
     setToken(newToken);
-    localStorage.setItem('token', newToken);
-    router.push('/home'); // Redirect to the home page after login
+    localStorage.setItem('nextToken', newToken);
+    router.push('/home'); 
   };
 
   const logout = () => {
     setToken(null);
-    localStorage.removeItem('token');
-    router.push('/login'); // Redirect to the login page after logout
+    localStorage.removeItem('nextToken');
+    router.push('/login');  
   };
 
   return (

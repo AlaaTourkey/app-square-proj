@@ -8,7 +8,7 @@ const LoginPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState('');
   const router = useRouter();
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem('nextToken');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -35,7 +35,7 @@ const LoginPage = () => {
       const data = await response.json();
       const token = data.token;
       if (response.ok) {
-        localStorage.setItem('token', token);
+        localStorage.setItem('nextToken', token);
         router.push('/');
       } else {
         setErrorMessage(data.message || 'Login Failed');

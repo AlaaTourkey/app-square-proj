@@ -3,5 +3,6 @@
   "logout": "تسجيل الخروج",
   "login": "تسجيل الدخول",
   "products": "المنتجات",
-  "dashboard": "لوحة التحكم"
+  "dashboard": "لوحة التحكم",
+  "page.RootLayout.title":"أهلاً أهلاً"
 }

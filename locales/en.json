@@ -3,5 +3,6 @@
   "logout": "Logout",
   "login": "Login",
   "products": "Products",
-  "dashboard": "Dashboard"
+  "dashboard": "Dashboard",
+  "page.RootLayout.title":"welcomeeeee"
 }
