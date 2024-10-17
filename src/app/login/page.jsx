@@ -8,7 +8,8 @@ const LoginPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState('');
   const router = useRouter();
-  const token = localStorage.getItem('token'); 
+  const [token, setToken] = useState(null);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     
@@ -34,6 +35,7 @@ const LoginPage = () => {
       const data = await response.json();
       if (response.ok && data.token) {
         localStorage.setItem('token', data.token);
+        setToken(data.token);
         router.push('/');
       } else {
         setErrorMessage(data.message || 'Login Failed');
@@ -45,12 +47,16 @@ const LoginPage = () => {
   };
 
   useEffect(() => {
-    if (token) {
-      router.push('/');
-    } else {
-      setIsLoading(false);
+    if (typeof window !== 'undefined') {
+      const savedToken = localStorage.getItem('token');
+      if (savedToken) {
+        setToken(savedToken);
+        router.push('/');
+      } else {
+        setIsLoading(false);
+      }
     }
-  }, [router, token]);
+  }, [router]);
 
   if (isLoading) {
     return <p>Loading...</p>;
