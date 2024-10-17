@@ -11,8 +11,8 @@ function Navbar() {
   const { t, i18n } = useTranslation('translation');
   const [isMounted, setIsMounted] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const { token, logout } = useAuth(); // Get token and logout from the auth context
-  const pathName = usePathname(); // Always call this hook
+  const { token, logout } = useAuth(); 
+  const pathName = usePathname(); 
 
   useEffect(() => {
     setIsMounted(true);
@@ -27,7 +27,6 @@ function Navbar() {
     setIsOpen(!isOpen);
   };
 
-  // Function to change language
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
   };

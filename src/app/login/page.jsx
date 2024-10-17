@@ -8,8 +8,7 @@ const LoginPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState('');
   const router = useRouter();
-  const token = localStorage.getItem('token'); // Use 'token' consistently
-
+  const token = localStorage.getItem('token'); 
   const handleSubmit = async (e) => {
     e.preventDefault();
     
