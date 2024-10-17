@@ -10,12 +10,12 @@ async function ProductDetails({ params }) {
 
   return (
     <>
-      <div className="container w-3/4 mx-auto my-5 px-4">
+      <div className="container w-3/4 mt-20 mx-auto my-5 px-4">
         <div className="flex flex-col md:flex-row">
           <div className="md:w-1/3 mb-4 md:mb-0">
             <img className='w-full h-auto object-cover rounded-lg' src={productDetails.data.imageCover} alt={productDetails.data.title} />
           </div>
-          <div className="md:w-2/3 flex items-center">
+          <div className="md:w-2/3 flex mx-8 items-center">
             <div>
               <h3 className="text-2xl font-bold mb-2">{productDetails.data.title}</h3>
               <p className="text-gray-700 mb-4">{productDetails.data.description}</p>

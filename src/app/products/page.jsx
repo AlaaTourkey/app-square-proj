@@ -18,7 +18,7 @@ async function Products() {
 
   return (
     <>
-    <div className="container w-3/4 mx-auto">
+    <div className="container mt-20 w-3/4 mx-auto">
 
       <h1 className="text-2xl font-bold mb-5">Products</h1>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">

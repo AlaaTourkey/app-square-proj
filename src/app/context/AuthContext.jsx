@@ -1,6 +1,6 @@
 'use client';
 import { createContext, useContext, useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation'; // Import from 'next/navigation' for client-side routing
+import { useRouter } from 'next/navigation';
 
 const AuthContext = createContext();
 
@@ -18,13 +18,13 @@ export const AuthProvider = ({ children }) => {
 
   const login = (newToken) => {
     setToken(newToken);
-    localStorage.setItem('nextToken', newToken);
-    router.push('/home'); 
+    localStorage.setItem('token', newToken);
+    router.push('/home');  
   };
 
   const logout = () => {
     setToken(null);
-    localStorage.removeItem('nextToken');
+    localStorage.removeItem('token');
     router.push('/login');  
   };
 

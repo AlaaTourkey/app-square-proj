@@ -8,7 +8,7 @@ const LoginPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState('');
   const router = useRouter();
-  const token = localStorage.getItem('nextToken');
+  const token = localStorage.getItem('token'); // Use 'token' consistently
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -33,9 +33,8 @@ const LoginPage = () => {
       });
 
       const data = await response.json();
-      const token = data.token;
-      if (response.ok) {
-        localStorage.setItem('nextToken', token);
+      if (response.ok && data.token) {
+        localStorage.setItem('token', data.token);
         router.push('/');
       } else {
         setErrorMessage(data.message || 'Login Failed');
@@ -55,7 +54,7 @@ const LoginPage = () => {
   }, [router, token]);
 
   if (isLoading) {
-    return <p>Loading...</p>; // You can replace this with a loading spinner component
+    return <p>Loading...</p>;
   }
 
   return (
